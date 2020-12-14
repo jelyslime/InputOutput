@@ -81,7 +81,7 @@ public class Cipher {
 
     protected String readFile(File file) {
         StringBuilder result = new StringBuilder();
-        try (Reader input = new InputStreamReader(new FileInputStream(file), UTF_8)) {
+        try (BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(file), UTF_8))) {
             int i;
             while ((i = input.read()) != -1) {
                 result.append(((char) i));
@@ -95,7 +95,7 @@ public class Cipher {
 
     protected void writeFile(File file, String toWrite) {
         char[] text = toWrite.toCharArray();
-        try (Writer output = new OutputStreamWriter(new FileOutputStream(file), UTF_8)) {
+        try (BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), UTF_8))) {
             output.write(text);
         } catch (IOException e) {
             e.printStackTrace();
